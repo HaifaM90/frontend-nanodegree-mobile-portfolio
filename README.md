@@ -27,6 +27,8 @@ To get started, check out the repository and inspect the code.
 
 6. replace querySelector/querySelectorAll with which applicable getElementById/getElementsByClassName
 
+7. for style.css change index-z with transform: translateZ(0)
+
 ### Optimization Tips and Tricks
 * [Optimizing Performance](https://developers.google.com/web/fundamentals/performance/ "web performance")
 * [Analyzing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp.html "analyzing crp")

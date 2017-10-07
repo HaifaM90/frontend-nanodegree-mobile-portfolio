@@ -406,13 +406,13 @@ var resizePizzas = function(size) {
   function changeSliderLabel(size) {
     switch(size) {
       case "1":
-      document.querySelector("#pizzaSize").innerHTML = "Small";
+      document.getElementById("pizzaSize").innerHTML = "Small";
       return;
       case "2":
-      document.querySelector("#pizzaSize").innerHTML = "Medium";
+      document.getElementById("pizzaSize").innerHTML = "Medium";
       return;
       case "3":
-      document.querySelector("#pizzaSize").innerHTML = "Large";
+      document.getElementById("pizzaSize").innerHTML = "Large";
       return;
       default:
       console.log("bug in changeSliderLabel");
@@ -450,13 +450,15 @@ var resizePizzas = function(size) {
     var newwidth;
     var dx ;
     //manipulate offsetWidth off window and elements
-    var Offwidth =document.querySelector(".randomPizzaContainer").offsetWidth;
-    var windowWidth = document.querySelector("#randomPizzas").offsetWidth;
-    //replace for loop with foreach 
-    document.querySelectorAll(".randomPizzaContainer").forEach(function(pizza) {
-      dx= determineDx(pizza, size, Offwidth, windowWidth);
+    //replace querySelector/querySelectorAll with which applicable getElementById/getElementsByClassName
+    var randomPizzaContainer = document.getElementsByClassName("randomPizzaContainer");
+    var Offwidth = randomPizzaContainer[0].offsetWidth;
+    var windowWidth = document.getElementById("randomPizzas").offsetWidth;
+    for (var i=0; i< randomPizzaContainer.length; i++){
+      dx= determineDx(randomPizzaContainer[i], size, Offwidth, windowWidth);
       newwidth = ( Offwidth+ dx) + 'px';
-      pizza.style.width = newwidth;});
+      randomPizzaContainer[i].style.width = newwidth;
+      }
     }
 
     changePizzaSizes(size);
@@ -471,8 +473,9 @@ var resizePizzas = function(size) {
   window.performance.mark("mark_start_generating"); // collect timing data
 
   // This for-loop actually creates and appends all of the pizzas when the page loads
+  //calling the element putside the loop to reduce coast
+  var pizzasDiv = document.getElementById("randomPizzas");
   for (var i = 2; i < 100; i++) {
-    var pizzasDiv = document.getElementById("randomPizzas");
     pizzasDiv.appendChild(pizzaElementGenerator(i));
   }
 
@@ -504,10 +507,12 @@ var resizePizzas = function(size) {
     frame++;
     window.requestAnimationFrame(updatePositions);
     window.performance.mark("mark_start_frame");
-    var items = document.querySelectorAll('.mover');
+    //replace querySelectorAll with getElementsByClassName
+    var items = document.getElementsByClassName('mover');
+    //get this statment outside the loop to reduce the coast to calling
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     for (var i = 0; i < items.length; i++) {
       // document.body.scrollTop is no longer supported in Chrome.
-      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       var phase = Math.sin((scrollTop / 1250) + (i % 5));
       items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
     }
@@ -528,18 +533,23 @@ window.requestAnimationFrame(updatePositions);
 
 
   // Generates the sliding pizzas when the page loads.
+  //Declare all variables out the loop
+  // call element once outside the loop
+  //reduce nums of Pizzas to 22  without effecting the design
   document.addEventListener('DOMContentLoaded', function() {
     var cols = 8;
     var s = 256;
-    for (var i = 0; i < 200; i++) {
-      var elem = document.createElement('img');
+    var elem ;
+    var movingPizzas= document.getElementById("movingPizzas1");
+    for (var i = 0; i < 22; i++) {
+      elem = document.createElement('img');
       elem.className = 'mover';
       elem.src = "images/pizza.png";
       elem.style.height = "100px";
       elem.style.width = "73.333px";
       elem.basicLeft = (i % cols) * s;
       elem.style.top = (Math.floor(i / cols) * s) + 'px';
-      document.querySelector("#movingPizzas1").appendChild(elem);
+      movingPizzas.appendChild(elem);
     }
     updatePositions();
 

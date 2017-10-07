@@ -19,6 +19,14 @@ To get started, check out the repository and inspect the code.
 
 2. replace addEventListener function with requestAnimationFrame
 
+3. Declare all variables out the loop
+
+4. call element once outside the loop
+
+5. reduce nums of Pizzas to 22  without effecting the design
+
+6. replace querySelector/querySelectorAll with which applicable getElementById/getElementsByClassName
+
 ### Optimization Tips and Tricks
 * [Optimizing Performance](https://developers.google.com/web/fundamentals/performance/ "web performance")
 * [Analyzing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp.html "analyzing crp")

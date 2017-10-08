@@ -536,12 +536,12 @@ window.requestAnimationFrame(updatePositions);
   //Declare all variables out the loop
   // call element once outside the loop
   //reduce nums of Pizzas to 22  without effecting the design
-  document.addEventListener('DOMContentLoaded', function() {
+
     var cols = 8;
     var s = 256;
     var elem ;
     var movingPizzas= document.getElementById("movingPizzas1");
-    for (var i = 0; i < 22; i++) {
+    for (var i = 0; i < 24; i++) {
       elem = document.createElement('img');
       elem.className = 'mover';
       elem.src = "images/pizza.png";
@@ -552,5 +552,3 @@ window.requestAnimationFrame(updatePositions);
       movingPizzas.appendChild(elem);
     }
     updatePositions();
-
-  });

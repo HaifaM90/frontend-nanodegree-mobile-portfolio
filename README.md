@@ -12,6 +12,8 @@ To get started, check out the repository and inspect the code.
 1. Move the analytics js script to the bottom of HTML file
 2. Add meta tag for cache control
 3. Add media attribute for print.css link
+4. replace imgs with link as resource with saved img
+5. minify js, css and HTML (but when you asked me for uncorrupted index.html I unminify it )
 
 #### Part 2: Optimize Frames per Second in pizza.html
 
